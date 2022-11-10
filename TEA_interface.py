@@ -423,17 +423,17 @@ class TEA_interface(tk.Tk):
                 IT_cost_d[0]/1e3), np.cumsum(
                     cooling_cost_evap_d[0])
                 / 1e3, np.cumsum(
-                capital_cost_d[0]/1e3), np.cumsum(
-                maintenance_cost_year_d[0]/1e3)])
+                maintenance_cost_year_d[0]/1e3), np.cumsum(
+                capital_cost_d[0]/1e3)])
             stack1 = np.vstack([np.cumsum(
                 IT_cost_d[1]/1e3), np.cumsum(
                     cooling_cost_evap_d[1])
                 / 1e3, np.cumsum(
-                capital_cost_d[1]/1e3), np.cumsum(
-                maintenance_cost_year_d[1]/1e3)])
+                maintenance_cost_year_d[1]/1e3), np.cumsum(
+                capital_cost_d[1]/1e3)])
 
-            labels = ['IT', 'Cooling',
-                      'Capital costs', 'Maintenance']
+            labels = ['IT', 'Cooling', 'Maintenance',
+                      'Capital costs']
 
             line1 = ax1.stackplot(time_days/365,
                                   stack0, colors=[cmap(1/5), cmap(2/5),
@@ -472,16 +472,16 @@ class TEA_interface(tk.Tk):
             stack0 = np.vstack([np.cumsum(
                 cooling_cost_evap_d[0])
                 / 1e3, np.cumsum(
-                capital_cost_d[0]/1e3), np.cumsum(
-                maintenance_cost_year_d[0]/1e3)])
+                maintenance_cost_year_d[0]/1e3), np.cumsum(
+                capital_cost_d[0]/1e3)])
             stack1 = np.vstack([np.cumsum(
                 cooling_cost_evap_d[1])
                 / 1e3, np.cumsum(
-                capital_cost_d[1]/1e3), np.cumsum(
-                maintenance_cost_year_d[1]/1e3)])
+                maintenance_cost_year_d[1]/1e3), np.cumsum(
+                capital_cost_d[1]/1e3)])
 
-            labels = ['Cooling',
-                      'Capital costs', 'Maintenance']
+            labels = ['Cooling', 'Maintenance',
+                      'Capital costs']
 
             line1 = ax1.stackplot(time_days/365,
                                   stack0, colors=[cmap(2/5),
