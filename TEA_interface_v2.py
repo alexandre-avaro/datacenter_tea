@@ -309,8 +309,9 @@ class TEA_interface(tk.Tk):
 
             if price_type == 'Present':
                 ax1.plot(month_numbers/12,
-                         np.multiply(self.compute_electricity_price(state_name),
-                                     int_multip),
+                         np.multiply(
+                             self.compute_electricity_price(state_name),
+                             int_multip),
                          label='Prices corrected with interest rate')
             ax1.legend()
             ax1.set_xlabel('Time [years]')
