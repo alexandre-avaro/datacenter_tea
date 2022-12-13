@@ -136,6 +136,14 @@ class TEA_interface(tk.Tk):
         self.lb9 = tk.Label(win, text='Secondary plot')
         self.lb9.place(x=1300/2 + 330, y=145)
 
+        self.present_future_price = tk.StringVar()
+        self.present_future_price.set('Future')
+        self.price_menu = tk.OptionMenu(
+            win, self.present_future_price, *['Future', 'Present'])
+        self.price_menu.place(x=1300/2 - 420, y=140)
+        self.lb10 = tk.Label(win, text='Equivalent cost')
+        self.lb10.place(x=1300/2 - 510, y=145)
+
     def custom_parser(self, string, type):
         """
         Custom parser for the text inputs
@@ -214,6 +222,12 @@ class TEA_interface(tk.Tk):
         state_name = self.state_name.get()
         interest_rate = self.custom_parser(
             self.interest_rate.get(), 'float')[0]/100
+        price_type = self.custom_parser(
+            self.present_future_price.get(), 'str'
+        )[0]
+
+        if price_type == 'Future':
+            interest_rate = 0
 
         # Compute settings & initialize arrays
         self.sim_time_m = int(round(12*sim_time_y))
@@ -292,10 +306,12 @@ class TEA_interface(tk.Tk):
                      self.compute_electricity_price(state_name),
                      label='Electricity costs')
             int_multip = [(1+interest_rate/12)**-i for i in month_numbers]
-            ax1.plot(month_numbers/12,
-                     np.multiply(self.compute_electricity_price(state_name),
-                                 int_multip),
-                     label='Prices corrected with interest rate')
+
+            if price_type == 'Present':
+                ax1.plot(month_numbers/12,
+                         np.multiply(self.compute_electricity_price(state_name),
+                                     int_multip),
+                         label='Prices corrected with interest rate')
             ax1.legend()
             ax1.set_xlabel('Time [years]')
             ax1.set_ylabel('Cost of electricity [$/kWh]')
